@@ -28,8 +28,12 @@ ob_start();
         <input type="text" name="nbPages" class="form-control" value="<?= $this->tab["nbPages"]?>" >
     </div>
     <div class="form-group">
-        <label class="col-form-label mt-4" for="inputDefault"></label>
+        <label class="col-form-label mt-4" for="inputDefault">Image du fichier</label>
         <input type="file" name="image" class="form-control">
+    </div>
+    <div class="form-group">
+        <label class="col-form-label mt-4" for="inputDefault">Fichier à uploader</label>
+        <input type="file" name="fichier" class="form-control">
     </div>
     <div class="form-group">
         <input type="hidden" name="statut" class="form-control" value="<?= $this->tab["Statut_de_suppression"]?>">

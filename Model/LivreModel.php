@@ -13,7 +13,7 @@ Class LivreModel extends Model
     
     public function AfficherLivre()
     {
-        $this->reqExecute=$this->requete('SELECT * FROM '.$this->table);
+        $this->reqExecute=$this->requete("SELECT * FROM {$this->table} WHERE `Statut_de_suppression`=0");
         return $this->reqExecute->fetchAll();
         
     }

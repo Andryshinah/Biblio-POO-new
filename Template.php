@@ -16,7 +16,7 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-        <a class="navbar-brand" href="Livre">Livres</a>
+        <a class="navbar-brand" href="Verificateur">Livres</a>
         </li>
       </ul>
       <form class="d-flex">

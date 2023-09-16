@@ -1,19 +1,19 @@
 <?php
 namespace App\Controller;
-use App\Model\DetailsLivreModel;
-use App\Model\ModifierLivreModel;
 
-Class ModifierLivreController extends Controller
+use App\Model\AjoutLivreModel;
+
+Class AjoutLivreDataController extends Controller
 {
-    public $tab=array();
-
-  public function Index()
-  {
-    $ModificationLivre=new ModifierLivreModel();
-    $target_dir = "../public/images/";
+    public function Index()
+    {
+        // var_dump($_FILES["newimage"]);
+        // var_dump($_FILES["newfichier"]);
+        $Livre=new AjoutLivreModel();
+        $target_dir = "../public/images/";
     $target_dirFile = "../public/files/";
-    $target_file = $target_dir . basename($_FILES["image"]["name"]);
-    $target_fichier = $target_dirFile . basename($_FILES["fichier"]["name"]);
+    $target_file = $target_dir . basename($_FILES["newimage"]["name"]);
+    $target_fichier = $target_dirFile . basename($_FILES["newfichier"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
     $FileType = strtolower(pathinfo($target_fichier,PATHINFO_EXTENSION));
@@ -21,9 +21,9 @@ Class ModifierLivreController extends Controller
     // Check if image file is a actual image or fake image
     if(isset($_POST["submit"])) 
       {
-          $check = getimagesize($_FILES["image"]["tmp_name"]);
-          $checkFile = filesize($_FILES["fichier"]["tmp_name"]);
-          if($check !== false && $checkFile !==false) 
+          $check = getimagesize($_FILES["newimage"]["tmp_name"]);
+          $checkFile = filesize($_FILES["newfichier"]["tmp_name"]);
+          if($check !== false && $checkFile !== false) 
           {
               echo "File is an image - " . $check["mime"] . ".";
               $uploadOk = 1;
@@ -41,7 +41,7 @@ Class ModifierLivreController extends Controller
             $uploadOk = 0;
         }
         // Check file size
-        if ($_FILES["image"]["size"] > 500000 && filesize($_FILES["fichier"]["tmp_name"])<100000000) 
+        if ($_FILES["newimage"]["size"] > 500000 && filesize($_FILES["newfichier"]["tmp_name"])<1000000000) 
         {
             echo "Sorry, your file is too large.";
             $uploadOk = 0;
@@ -61,10 +61,10 @@ Class ModifierLivreController extends Controller
           } 
         else 
         {
-          if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file) && move_uploaded_file($_FILES["fichier"]["tmp_name"],$target_fichier)) 
+          if (move_uploaded_file($_FILES["newimage"]["tmp_name"], $target_file) && move_uploaded_file($_FILES["newfichier"]["tmp_name"],$target_fichier)) 
           {
-          echo "The file ". basename( $_FILES["fichier"]["name"]). " has been uploaded.";
-          $this->tab=$ModificationLivre->ModifierLivre($_POST["Id"],$_POST['Titre'],$_POST['nbPages'],$_FILES["image"]["name"],$_FILES["fichier"]["name"],$_POST['statut']);
+          echo "The file ". basename( $_FILES["newfichier"]["name"]). " has been uploaded.";
+          $Livre->AjoutLivre($_POST['Titre'],$_POST['nbPages'],$_FILES["newimage"]["name"],$_FILES["newfichier"]["name"],$_POST["statut"]);
           $this->render("ResultatRequete.view");
           } 
           else 
@@ -72,13 +72,7 @@ Class ModifierLivreController extends Controller
             echo "Sorry, there was an error uploading your file.";
           }
       }
-      
-  }
-    
-            
-      
-      
-
-
+        
+    }
 }
 ?>

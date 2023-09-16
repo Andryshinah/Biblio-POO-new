@@ -13,7 +13,7 @@ Class ModifierLivreModel extends Model
     
     public function ModifierLivre($id,$Titre,$nbPage,$image,$fichier,$statut)
     {
-        $this->reqExecute=$this->requete("UPDATE {$this->table}  SET `Id`= ?,`Titre`=?,`nbPages`=?,`image`=?,`livre`=?,`Statut_de_suppression`=? WHERE `Id`= {$id}",array($id,$Titre,$nbPage,$image,$fichier,$statut));
+        $this->reqExecute=$this->requete();
         return $this->reqExecute;
         
     }
