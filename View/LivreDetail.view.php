@@ -9,6 +9,7 @@ ob_start();
   <div class="col-6">
     <p style="font-weight: bolder;font-size: 131%;">Titre : <?= $this->tab["Titre"] ?></p>
     <p style="font-weight: bolder;font-size: 131%;">Nombre de pages :<?= $this->tab["nbPages"] ?></p>
+    
   </div>
 </div>
 

@@ -2,26 +2,27 @@
 namespace App\Model;
 use App\Autoloader;
 
-Class ModifierLivreModel extends Model
+Class VerificateurIdentiteModel extends Model
 {
+    private $req;
 
-    private $reqExecute;
     public function __construct()
     {
-        $this->table='livres';
+        $this->table='identite utilisateur';
     }
     
-    public function ModifierLivre($id,$Titre,$nbPage,$image,$fichier,$statut)
+    public function Verificateur()
     {
-        $this->reqExecute=$this->requete();
-        return $this->reqExecute;
+        // $this->req=$this->requete('SELECT `Id Utilisateur`, `Nom`, `Mot de passe` FROM `identite utilisateur` WHERE `Nom` = ?',array($Nom));
+        $this->req=$this->requete("SELECT * FROM `identite utilisateur`");
+        return $this->req->fetchAll();
         
+   
+        
+
     }
 
- 
-   
-   
-}
 
+}
 
 ?>

@@ -7,12 +7,12 @@ Class SupprimerLivreController extends Controller
 {
     public $tab=array();
 
-  public function Index()
-  {
-    $Livre=new SupprimerLivreModel();
-    $this->tab=$Livre->SupprimerLivre($_GET["Id"]);
-    $this->render("ResultatRequete.view");
-  }
+    public function Index()
+    {
+      $Livre=new SupprimerLivreModel();
+      $this->tab=$Livre->SupprimerLivre($_GET["Id"]);
+      $this->render("ResultatRequete.view");
+    }
 
 }
 ?>

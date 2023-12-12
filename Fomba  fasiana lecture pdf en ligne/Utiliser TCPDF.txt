@@ -1,0 +1,51 @@
+Bien sûr ! Voici un exemple de code en PHP pour effectuer une lecture partielle d'un livre PDF :
+
+```php
+<?php
+
+// Chemin vers le fichier PDF
+$cheminFichier = 'chemin/vers/votre/livre.pdf';
+
+// Numéro de page à partir de laquelle commencer la lecture
+$numeroPageDepart = 3;
+
+// Nombre de pages à lire
+$nombrePagesLecture = 5;
+
+// Charger la bibliothèque TCPDF (vous devez avoir TCPDF installé)
+require_once('chemin/vers/tcpdf/tcpdf.php');
+
+// Créer une instance de la classe TCPDF
+$pdf = new TCPDF();
+
+// Ajouter les pages à lire
+for ($i = $numeroPageDepart; $i < $numeroPageDepart + $nombrePagesLecture; $i++) {
+    // Ajouter une nouvelle page
+    $pdf->AddPage();
+
+    // Charger le contenu de la page PDF
+    $pdf->setSourceFile($cheminFichier);
+
+    // Obtenir le contenu de la page spécifique
+    $template = $pdf->importPage($i);
+
+    // Utiliser le contenu de la page spécifique
+    $pdf->useTemplate($template);
+}
+
+// Nom du fichier de sortie
+$nomFichierSortie = 'lecture_partielle.pdf';
+
+// Enregistrer le fichier PDF de sortie
+$pdf->Output($nomFichierSortie, 'D');
+
+?>
+```
+
+Ce code utilise la bibliothèque TCPDF pour lire partiellement un livre PDF en PHP. Vous devez d'abord spécifier le chemin vers votre fichier PDF dans la variable `$cheminFichier`. Ensuite, vous pouvez définir le numéro de page à partir duquel commencer la lecture dans la variable `$numeroPageDepart`, et le nombre de pages à lire dans la variable `$nombrePagesLecture`.
+
+Le code utilise une boucle pour ajouter chaque page à lire à un nouvel objet PDF. Il charge le contenu de chaque page à partir du fichier PDF, puis utilise ce contenu pour ajouter la page au nouvel objet PDF.
+
+Enfin, le code enregistre le fichier PDF de sortie avec le nom spécifié dans la variable `$nomFichierSortie`. Vous pouvez modifier ce nom de fichier selon vos besoins.
+
+Assurez-vous d'avoir la bibliothèque TCPDF installée et accessible dans votre projet PHP pour exécuter ce code avec succès.

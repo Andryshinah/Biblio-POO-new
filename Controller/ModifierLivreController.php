@@ -18,7 +18,7 @@ Class ModifierLivreController extends Controller
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
     $FileType = strtolower(pathinfo($target_fichier,PATHINFO_EXTENSION));
 
-    // Check if image file is a actual image or fake image
+   
     if(isset($_POST["submit"])) 
       {
           $check = getimagesize($_FILES["image"]["tmp_name"]);
@@ -34,30 +34,30 @@ Class ModifierLivreController extends Controller
               $uploadOk = 0;
           }
       }
-        // Check if file already exists
+        
         if (file_exists($target_file) && file_exists($target_dirFile)) 
         {
             echo "Sorry, file already exists.";
             $uploadOk = 0;
         }
-        // Check file size
+        
         if ($_FILES["image"]["size"] > 500000 && filesize($_FILES["fichier"]["tmp_name"])<100000000) 
         {
             echo "Sorry, your file is too large.";
             $uploadOk = 0;
         }
-        // Allow certain file formats
+        
         if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
         && $imageFileType != "gif" && $FileType != "pdf" ) 
         {
           echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed and if you upload file please respect pdf format";
             $uploadOk = 0;
         }
-        // Check if $uploadOk is set to 0 by an error
+        
         if ($uploadOk == 0)
         {
             echo "Sorry, your file was not uploaded.";
-        // if everything is ok, try to upload file
+       
           } 
         else 
         {

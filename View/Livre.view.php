@@ -1,8 +1,12 @@
 <?php
+
+use App\Core\SessionManager;
+
 ob_start();
 for($i=0;$i<count($this->tab);$i++){
 ?>
-<form method="POST" action="<?= ROOT?>">
+
+<form method="POST" action="SuppressionMulti">
     <table class="table table-hover ">
         <thead>
             <tr>
@@ -21,6 +25,7 @@ for($i=0;$i<count($this->tab);$i++){
                 <td class="align-middle"><?= $this->tab[$i]["nbPages"] ?></td>
                 <td class="align-middle"><a href="ModifierLivreFormulaire?Id=<?= $this->tab[$i]["Id"] ?>"><button type="button" class="btn btn-primary">Modifier</button></a></td>
                 <td class="align-middle"><a href="../public/files/<?= $this->tab[$i]["livre"] ?>" download="<?= $this->tab[$i]["livre"] ?>"><button type="button" class="btn btn-info">Telecharger</button></a></td>
+                <td class="align-middle"><a href="Lecture?Id=<?= $this->tab[$i]["Id"] ?>"><button type="button" class="btn btn-success">Lire l'extrait</button></a></td>
                 <td class="align-middle"><a href="SupprimerLivre?Id=<?= $this->tab[$i]["Id"] ?>"><button type="button" class="btn btn-warning">Supprimer</button></a></td>
             </tr>
             <td><input type="checkbox" name="Livre_selection[]" value="<?=  $this->tab[$i]["Id"];?>" style="margin:69px 10px 10px 28px;"></td>
@@ -30,7 +35,7 @@ for($i=0;$i<count($this->tab);$i++){
 }
 ?>
     <div class="d-grid gap-2" style="margin: 9px 10px 10px 5px;">
-    <button type="submit" name="SuppressionMulti" class="btn  btn-lg btn-danger">Delete Selected</button>
+    <button type="submit" name="SuppressionMulti" class="btn  btn-lg btn-danger">Supprimer ceux selectionées</button>
     </div>
 </form>
 <a href="AjoutLivre">
@@ -42,6 +47,7 @@ for($i=0;$i<count($this->tab);$i++){
 <?php
 
 $content = ob_get_clean();
-$titre="Mes livres";
+$session=new SessionManager();
+$titre= "Bonjour:". $session->getSessionVariable("name");
 require  ROOT."/Template.php";
 ?>

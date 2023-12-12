@@ -11,7 +11,7 @@ Class DetailsLivreController extends Controller
     $AffichageLivre = new DetailsLivreModel();
     $livreDetails = $AffichageLivre->AfficherLivredetails($_GET['Id']); 
     $this->tab = $livreDetails;
-    $this->render("LivreDetail.view", $this->tab);
+    $this->render("LivreDetail.view",$this->tab);
 }
 
 }

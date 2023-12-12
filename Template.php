@@ -19,10 +19,14 @@
         <a class="navbar-brand" href="Verificateur">Livres</a>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-sm-2" type="search" placeholder="Search">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-      </form>
+     <?php 
+     use App\Core\SessionManager;
+     $session=new SessionManager();
+     if($session->getSessionVariable('name') !== null){?>
+      <button type="button" class="btn btn-justify-content-center"><a href="Deconnexion" class="navbar-brand">Se deconnecter</a></button>
+      <?php echo $session->getSessionVariable('name');} else {?> 
+        <button type="button" class="btn btn-justify-content-center"><a href="Verificateur" class="navbar-brand">Se connecter</a></button>
+      <?php } ?>           
     </div>
   </div>
 </nav>
@@ -34,6 +38,10 @@
 <div class="container">
 <h1 class='rounded border border-dark p-2 m-2 text-center text-white bg-success'><?php if(isset($titre)){echo $titre;}?></h1>
 <?php if(isset($content)){echo $content;}?>
+
+
+
+
 </div>
 
 

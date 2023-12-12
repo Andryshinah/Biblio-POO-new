@@ -1,0 +1,36 @@
+<?php
+
+// Chemin vers le fichier PDF
+$cheminFichier = 'chemin/vers/votre/livre.pdf';
+
+// Numéro de page à partir de laquelle commencer la lecture
+$numeroPageDepart = 3;
+
+// Nombre de pages à lire
+$nombrePagesLecture = 5;
+
+// Ouvrir le fichier PDF
+$fichier = fopen($cheminFichier, 'rb');
+
+// Vérifier si le fichier est ouvert avec succès
+if ($fichier) {
+    // Parcourir les pages jusqu'à la page de départ
+    for ($i = 1; $i < $numeroPageDepart; $i++) {
+        // Lire le contenu de la page
+        $contenuPage = fread($fichier, 8192);
+    }
+
+    // Parcourir les pages à lire
+    for ($i = 0; $i < $nombrePagesLecture; $i++) {
+        // Lire le contenu de la page
+        $contenuPage = fread($fichier, 8192);
+
+        // Faire quelque chose avec le contenu de la page, par exemple l'afficher
+        echo $contenuPage;
+    }
+
+    // Fermer le fichier
+    fclose($fichier);
+}
+
+?>
